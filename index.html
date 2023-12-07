@@ -1,26 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
   <title>Frontend Mentor | Calculator app</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <div class="calc">
+    <header>
+      <h2 class="title">calc</h2>
+      <span class="theme">
+        <span class="theme__value">1</span>
+        <span class="theme__value">2</span>
+        <span class="theme__value">3</span>
+        <span class="theme__title">THEME</span>
+        <input type="range" name="mode" id="theme__range" max="2">
+      </span>
+    </header>
+    <div class="screen">
+      <span class="screen__result">0</span>
+    </div>
+    <section class="number">
+      <table class="numbers">
+        <tbody>
+          <tr>
+            <td>
+              <div class="numbers__el">7</div>
+            </td>
+            <td>
+              <div class="numbers__el">8</div>
+            </td>
+            <td>
+              <div class="numbers__el">9</div>
+            </td>
+            <td>
+              <div class="numbers__el">DEL</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="numbers__el">4</div>
+            </td>
+            <td>
+              <div class="numbers__el">5</div>
+            </td>
+            <td>
+              <div class="numbers__el">6</div>
+            </td>
+            <td>
+              <div class="numbers__el">+</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="numbers__el">1</div>
+            </td>
+            <td>
+              <div class="numbers__el">2</div>
+            </td>
+            <td>
+              <div class="numbers__el">3</div>
+            </td>
+            <td>
+              <div class="numbers__el">-</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="numbers__el">.</div>
+            </td>
+            <td>
+              <div class="numbers__el">0</div>
+            </td>
+            <td>
+              <div class="numbers__el">/</div>
+            </td>
+            <td>
+              <div class="numbers__el">x</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="numbers__el">RESET</div>
+            </td>
+            <td>
+              <div class="numbers__el"> =</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </div>
 </body>
+
 </html>
