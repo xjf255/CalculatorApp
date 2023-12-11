@@ -17,13 +17,25 @@
   <div class="calc">
     <header>
       <h2 class="title">calc</h2>
-      <span class="theme">
-        <span class="theme__value">1</span>
-        <span class="theme__value">2</span>
-        <span class="theme__value">3</span>
-        <span class="theme__title">THEME</span>
-        <input type="range" name="mode" id="theme__range" max="2">
-      </span>
+      <section class="themes">
+        <p class="theme__title">THEME</p>
+        <span class="section__theme">
+          <div class="theme__change">
+            <span class="theme__value">1</span>
+            <span class="theme__value">2</span>
+            <span class="theme__value">3</span>
+          </div>
+          <div class="theme__change inputs">
+            <input type="radio" name="mode" id="theme1__range" class="range" checked>
+            <label for="theme1__range" class="range__label range__one"></label>
+            <input type="radio" name="mode" id="theme2__range" class="range">
+            <label for="theme2__range" class="range__label range__two"></label>
+            <input type="radio" name="mode" id="theme3__range" class="range">
+            <label for="theme3__range" class="range__label range__three"></label>
+            <!-- <input type="range" name="" id="" max="2"> -->
+          </div>
+        </span>
+      </section>
     </header>
     <div class="screen">
       <span class="screen__result">0</span>
@@ -42,7 +54,7 @@
               <div class="numbers__el">9</div>
             </td>
             <td>
-              <div class="numbers__el">DEL</div>
+              <div class="numbers__el special__el">DEL</div>
             </td>
           </tr>
           <tr>
@@ -88,11 +100,11 @@
             </td>
           </tr>
           <tr>
-            <td>
-              <div class="numbers__el">RESET</div>
+            <td class="special">
+              <div class="numbers__el special__el">RESET</div>
             </td>
-            <td>
-              <div class="numbers__el"> =</div>
+            <td class="special">
+              <div class="numbers__el special__el equal"> =</div>
             </td>
           </tr>
         </tbody>
