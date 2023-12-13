@@ -1,7 +1,6 @@
-console.log('what´s up old')
 const d = document,
     $select = d.querySelectorAll('[themeChange]')
-    $screen = d.querySelector(".screen__result"),
+$screen = d.querySelector(".screen__result"),
     $inputs = d.querySelector('.inputs'),
     $number = d.querySelectorAll(".numbers__el"),
     $del = d.getElementById("del"),
@@ -18,6 +17,8 @@ let result = 0,
     op = true,
     values = '',
     values2 = '',
+    data1,
+    data2,
     i = 0;
 
 function del(value = 0) {
@@ -52,7 +53,6 @@ d.addEventListener("click", e => {
         data.push(values2);
         result = 0;
         if (data.length > 1) {
-            console.log(operator == 0)
             if (operator == 0) {
                 result = Number(data[data.length - 2]) + Number(data[data.length - 1]);
             } else if (operator == 1) {
@@ -62,7 +62,7 @@ d.addEventListener("click", e => {
             } else if (operator == 3) {
                 result = Number(data[data.length - 2]) * Number(data[data.length - 1]);
             }
-            $screen.textContent = result;
+            $screen.textContent = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             data.push(result);
         } else {
             $screen.textContent = values;
@@ -76,12 +76,14 @@ d.addEventListener("click", e => {
         if (op) {
             if (e.target === el) {
                 values += el.dataset.value;
-                $screen.textContent = values;
+                data1 = values.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                $screen.textContent = data1
             }
         } else {
             if (e.target === el) {
                 values2 += el.dataset.value;
-                $screen.textContent += el.dataset.value;
+                data2 = values2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                $screen.textContent += data2;
             }
         }
     })
@@ -90,28 +92,27 @@ d.addEventListener("click", e => {
         if (e.target === el) {
             operator = el.dataset.value;
             operatorSign = el.dataset.sign;
-            $screen.textContent = values + operatorSign;
+            $screen.textContent = data1 + operatorSign;
             op = false;
             data.push(values)
         }
     })
 })
-console.log($select)
-d.addEventListener('click', e=>{
-    if(e.target === $themes){
-        $select.forEach(element =>{
+d.addEventListener('click', e => {
+    if (e.target === $themes) {
+        $select.forEach(element => {
             element.classList.remove('themetwo');
             element.classList.remove('themethr');
         })
     }
-    if(e.target === $themes1){
-        $select.forEach(element =>{
+    if (e.target === $themes1) {
+        $select.forEach(element => {
             element.classList.add('themetwo');
             element.classList.remove('themethr');
         })
     }
-    if(e.target === $themes2){
-        $select.forEach(element =>{
+    if (e.target === $themes2) {
+        $select.forEach(element => {
             element.classList.remove('themetwo');
             element.classList.add('themethr');
         })
