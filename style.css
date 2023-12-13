@@ -13,6 +13,34 @@
     /* Text */
     --Very-dark-grayish-blue: hsl(221, 14%, 31%);
     --White: hsl(0, 0%, 100%);
+    /*theme 2*/
+    --theme2-main-background: hsl(0, 0%, 90%);
+    --theme2-Grayish-red-toggle-keypad-background: hsl(0, 5%, 81%);
+    --theme2-Very-light-gray-screen-background: hsl(0, 0%, 93%);
+    /* Keys */
+    --theme2-Dark-moderate-cyan-key-background: hsl(185, 42%, 37%);
+    --theme2-Very-dark-cyan-key-shadow: hsl(185, 58%, 25%);
+    --theme2-Orange-key-background-toggle: hsl(25, 98%, 40%);
+    --theme2-Dark-orange-key-shadow: hsl(25, 99%, 27%);
+    --theme2-Light-grayish-yellow-key-background: hsl(45, 7%, 89%);
+    --theme2-Dark-grayish-orange-key-shadow: hsl(35, 11%, 61%);
+    /* Text */
+    --theme2-Very-dark-grayish-yellow: hsl(60, 10%, 19%);
+    /*theme 3*/
+    --theme3-Very-dark-violet-main: hsl(268, 75%, 9%);
+    --theme3-Very-dark-violet-toggle-keypad: hsl(268, 71%, 12%);
+    /* Keys */
+    --theme3-Dark-violet-key-background: hsl(281, 89%, 26%);
+    --theme3-Vivid-magenta-key-shadow: hsl(285, 91%, 52%);
+
+    --theme3-Pure-cyan-key-background-toggle: hsl(176, 100%, 44%);
+    --theme3-Soft-cyan-key-shadow: hsl(177, 92%, 70%);
+
+    --theme3-Very-dark-violet-key-background: hsl(268, 47%, 21%);
+    --theme3-Dark-magenta-key-shadow: hsl(290, 70%, 36%);
+    /* Text */
+    --theme3-Light-yellow: hsl(52, 100%, 62%);
+    --theme3-Very-dark-blue: hsl(198, 20%, 13%);
 }
 
 * {
@@ -20,21 +48,31 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'League Spartan', sans-serif;
-    color: var(--White);
+    transition: background-color 0.6s ease;
 }
 
 body {
     width: 100vw;
+    min-width: 360px;
     height: 100vh;
     background-color: var(--main-background);
+    color: var(--White);
     padding: 30px;
 }
-
+body.themetwo{
+    background-color: var(--theme2-main-background);
+    color: var(--theme2-Very-dark-grayish-yellow);
+}
+body.themethr{
+    background-color: var(--theme3-Very-dark-violet-main);
+    color: var(--theme3-Light-yellow);
+}
 .calc {
     width: 100%;
     height: 100%;
 }
-.themes{
+
+.themes {
     width: 50%;
     height: fit-content;
     font-size: 12px;
@@ -45,37 +83,56 @@ body {
     align-items: center;
     gap: 20px;
 }
-.theme__title{
+
+.theme__title {
     margin: 15px 0 0 0;
 }
-.theme__change{
+
+.theme__change {
     width: 80px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 10px;
 }
-.inputs{
+
+.inputs {
     height: 30px;
     background-color: var(--toggle-keypad-background);
     border-radius: 20px;
 }
-input{
+.inputs.themetwo{
+    background-color: var(--theme2-Grayish-red-toggle-keypad-background);
+}
+.inputs.themethr{
+    background-color: var(--theme3-Very-dark-violet-toggle-keypad);
+}
+input {
     display: none;
 }
-.range__label{
+
+.range__label {
     width: 16px;
     height: 16px;
     border-radius: 50%;
     cursor: pointer;
     opacity: 0;
 }
-input.range:checked + .range__label{
+
+input.range:checked+.range__label {
     opacity: 1;
 }
-.range__one{
- background-color: var(--Red);   
+
+.range__one {
+    background-color: var(--Red);
 }
+.range__two{
+    background-color: var(--theme2-Orange-key-background-toggle);
+}
+.range__three{
+    background-color: var(--theme3-Pure-cyan-key-background-toggle);
+}
+
 header {
     width: 100%;
     height: 10%;
@@ -87,6 +144,7 @@ header {
 .title {
     font-size: 2rem;
 }
+
 .screen {
     width: 100%;
     height: 100px;
@@ -96,11 +154,17 @@ header {
     align-items: center;
     padding: 20px;
 }
-
+.screen.themetwo{
+    background-color: var(--theme2-Very-light-gray-screen-background);
+}
+.screen.themethr{
+    background-color: var(--theme3-Very-dark-violet-toggle-keypad);
+}
 .screen__result {
     width: 100%;
     text-align: right;
-    font-size: 2rem;
+    font-size: 3rem;
+    overflow: hidden;
 }
 
 .number {
@@ -110,7 +174,12 @@ header {
     border-radius: 10px;
     margin-top: 30px;
 }
-
+.number.themetwo{
+    background-color: var(--theme2-Grayish-red-toggle-keypad-background);
+}
+.number.themethr{
+    background-color: var(--theme3-Very-dark-violet-toggle-keypad);
+}
 .numbers {
     width: 100%;
     height: 100%;
@@ -119,6 +188,7 @@ header {
 tbody {
     width: 100%;
     height: 100%;
+    min-height: 50vh;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -127,24 +197,42 @@ tbody {
 
 tr {
     display: grid;
+    /* grid-template-columns: max-content(200px); */
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 
-.numbers__el {
+.numbers__el,
+.special__el,
+.operators {
     height: 100%;
     font-size: 2rem;
     background-color: var(--Light-grayish-orange);
     color: var(--Very-dark-grayish-blue);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 6px;
-    box-shadow: -1px 4px 0px 0px var(--Grayish-orange);
-    -webkit-box-shadow: -1px 4px 0px 0px var(--Grayish-orange);
-    -moz-box-shadow: -1px 4px 0px 0px var(--Grayish-orange);
+    box-shadow: 0px 4px 0px 0px var(--Grayish-orange);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--Grayish-orange);
+    -moz-box-shadow: 0px 4px 0px 0px var(--Grayish-orange);
 }
-
+.numbers__el.themetwo,
+.operators.themetwo{
+    background-color: var(--theme2-Light-grayish-yellow-key-background);
+    box-shadow: 0px 4px 0px 0px var(--theme2-Dark-grayish-orange-key-shadow);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--theme2-Dark-grayish-orange-key-shadow);
+    -moz-box-shadow: 0px 4px 0px 0px var(--theme2-Dark-grayish-orange-key-shadow);
+}
+.numbers__el.themethr,
+.operators.themethr{
+    background-color: var(--theme3-Very-dark-violet-key-background);
+    color: var(--theme3-Light-yellow);
+    box-shadow: 0px 4px 0px 0px var(--theme3-Dark-magenta-key-shadow);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--theme3-Dark-magenta-key-shadow);
+    -moz-box-shadow: 0px 4px 0px 0px var(--theme3-Dark-magenta-key-shadow);
+}
 .special {
     display: grid;
     grid-column: span 2;
@@ -154,14 +242,58 @@ tr {
     font-size: 1.2rem;
     color: var(--White);
     background-color: var(--key-background);
-    box-shadow: -1px 4px 0px 0px var(--key-shadow);
-    -webkit-box-shadow: -1px 4px 0px 0px var(--key-shadow);
-    -moz-box-shadow: -1px 4px 0px 0px var(--key-shadow);
+    box-shadow: 0px 4px 0px 0px var(--key-shadow);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--key-shadow);
+    -moz-box-shadow: 0px 4px 0px 0px var(--key-shadow);
 }
-
+.special__el.themetwo{
+    background-color: var(--theme2-Dark-moderate-cyan-key-background);
+    box-shadow: 0px 4px 0px 0px var(--theme2-Very-dark-cyan-key-shadow);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--theme2-Very-dark-cyan-key-shadow);
+    -moz-box-shadow: 0px 4px 0px 0px var(--theme2-Very-dark-cyan-key-shadow);
+}
+.special__el.themethr{
+    background-color: var(--theme3-Dark-violet-key-background);
+    box-shadow: 0px 4px 0px 0px var(--theme3-Vivid-magenta-key-shadow);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--theme3-Vivid-magenta-key-shadow);
+    -moz-box-shadow: 0px 4px 0px 0px var(--theme3-Vivid-magenta-key-shadow);
+}
 .equal {
     background-color: var(--Red);
-    box-shadow: -1px 4px 0px 0px var(--Dark-red);
-    -webkit-box-shadow: -1px 4px 0px 0px var(--Dark-red);
-    -moz-box-shadow: -1px 4px 0px 0px var(--Dark-red);
+    box-shadow: 0px 4px 0px 0px var(--Dark-red);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--Dark-red);
+    -moz-box-shadow: 0px 4px 0px 0px var(--Dark-red);
+}
+.equal.themetwo{
+    background-color: var(--theme2-Orange-key-background-toggle);
+    box-shadow: 0px 4px 0px 0px var(--theme2-Dark-orange-key-shadow);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--theme2-Dark-orange-key-shadow);
+    -moz-box-shadow: 0px 4px 0px 0px var(--theme2-Dark-orange-key-shadow);
+}
+.equal.themethr{
+    background-color: var(--theme3-Pure-cyan-key-background-toggle);
+    color: var(--theme3-Very-dark-blue);
+    box-shadow: 0px 4px 0px 0px var(--theme3-Soft-cyan-key-shadow);
+    -webkit-box-shadow: 0px 4px 0px 0px var(--theme3-Soft-cyan-key-shadow);
+    -moz-box-shadow: 0px 4px 0px 0px var(--theme3-Soft-cyan-key-shadow);
+}
+@media (width >=1440px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .calc {
+        width: 50vw;
+        height: auto;
+    }
+
+    .screen {
+        padding: 60px 30px;
+    }
+
+    .screen__result {
+        font-size: 4rem;
+    }
 }
